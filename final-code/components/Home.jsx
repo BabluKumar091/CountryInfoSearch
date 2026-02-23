@@ -6,14 +6,16 @@ import { useOutletContext } from 'react-router-dom'
 
 export default function Home() {
   const [query, setQuery] = useState('')
+  const [region, setRegion] = useState('')
   const [isDark] = useOutletContext()
+
   return (
-    <main className={`${isDark? 'dark': ''}`}>
+    <main className={`${isDark ? 'dark' : ''}`}>
       <div className="search-filter-container">
         <SearchBar setQuery={setQuery} />
-        <SelectMenu />
+        <SelectMenu setRegion={setRegion} />
       </div>
-      {query === 'unmount' ? '' : <CountriesList query={query} />}
+      {query === 'unmount' ? '' : <CountriesList query={query} region={region} />}
     </main>
   )
 }

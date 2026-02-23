@@ -1,28 +1,47 @@
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Contact from './components/Contact'
-import Home from './components/Home'
-import Error from './components/Error'
-import CountryDetail from './components/CountryDetail'
+import { lazy, Suspense } from 'react'
+import CountriesListShimmer from './components/CountriesListShimmer'
+
+const Contact = lazy(() => import('./components/Contact'))
+const Home = lazy(() => import('./components/Home'))
+const Error = lazy(() => import('./components/Error'))
+const CountryDetail = lazy(() => import('./components/CountryDetail'))
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <Error />,
+    errorElement: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Error />
+      </Suspense>
+    ),
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: (
+          <Suspense fallback={<CountriesListShimmer />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: '/:country',
-        element: <CountryDetail />,
+        element: (
+          <Suspense fallback={<div>Loading Country Details...</div>}>
+            <CountryDetail />
+          </Suspense>
+        ),
       },
       {
         path: '/contact',
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<div>Loading Contact...</div>}>
+            <Contact />
+          </Suspense>
+        ),
       },
     ],
   },

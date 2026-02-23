@@ -22,7 +22,7 @@ export default function CountryDetail() {
       region: data.region,
       subregion: data.subregion,
       capital: data.capital,
-      flag: data.flags.svg,
+      flag: data.flags.png,
       tld: data.tld,
       languages: Object.values(data.languages).join(', '),
       currencies: Object.values(data.currencies)
@@ -70,7 +70,7 @@ export default function CountryDetail() {
   return countryData === null ? (
     'loading...'
   ) : (
-    <main className={`${isDark? 'dark': ''}`}>
+    <main className={`${isDark ? 'dark' : ''}`}>
       <div className="country-details-container">
         <span className="back-button" onClick={() => history.back()}>
           <i className="fa-solid fa-arrow-left"></i>&nbsp; Back

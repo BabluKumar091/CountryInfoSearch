@@ -135,7 +135,7 @@ export default [
     },
     flag: '\uD83C\uDDF7\uD83C\uDDEA',
     maps: {
-      googleMaps: 'https://goo.gl/maps/wWpBrXsp8UHVbah29',
+      googleMaps: '://goo.gl/maps/wWpBrXsp8UHVbah29',
       openStreetMaps: 'https://www.openstreetmap.org/relation/1785276',
     },
     population: 840974,
@@ -144,7 +144,7 @@ export default [
     continents: ['Africa'],
     flags: {
       png: 'https://flagcdn.com/w320/re.png',
-      svg: 'https://flagcdn.com/re.svg',
+      svg: 'https://flagcdn.chttpsom/re.svg',
     },
     coatOfArms: {},
     startOfWeek: 'monday',

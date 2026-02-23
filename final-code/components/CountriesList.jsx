@@ -1,44 +1,48 @@
-import React, { useEffect, useState } from 'react'
-// import countriesData from '../countriesData'
+import React, { useState, useEffect } from 'react'
+import countriesData from '../countriesData'
 import CountryCard from './CountryCard'
-import CountriesListShimmer from './CountriesListShimmer'
 
-export default function CountriesList({ query }) {
-  const [countriesData, setCountriesData] = useState([])
+export default function CountriesList({ query, region }) {
+  const [visibleCount, setVisibleCount] = useState(20)
 
+  // Reset visibleCount when query or region changes
   useEffect(() => {
-    fetch('https://restcountries.com/v3.1/all')
-      .then((res) => res.json())
-      .then((data) => {
-        setCountriesData(data)
-      })
-  }, [])
+    setVisibleCount(20)
+  }, [query, region])
 
-  if (!countriesData.length) {
-    return <CountriesListShimmer />
+  const filteredCountries = countriesData.filter((country) =>
+    country.name.common.toLowerCase().includes(query.toLowerCase()) &&
+    (region === '' || country.region.toLowerCase() === region)
+  )
+
+  const showMoreCountries = () => {
+    setVisibleCount((prevCount) => prevCount + 20)
   }
 
   return (
     <>
       <div className="countries-container">
-        {countriesData
-          .filter((country) =>
-            country.name.common.toLowerCase().includes(query)
+        {filteredCountries.slice(0, visibleCount).map((country) => {
+          return (
+            <CountryCard
+              key={country.name.common}
+              name={country.name.common}
+              flag={country.flags.png}
+              population={country.population}
+              region={country.region}
+              capital={country.capital?.[0]}
+              data={country}
+            />
           )
-          .map((country) => {
-            return (
-              <CountryCard
-                key={country.name.common}
-                name={country.name.common}
-                flag={country.flags.svg}
-                population={country.population}
-                region={country.region}
-                capital={country.capital?.[0]}
-                data={country}
-              />
-            )
-          })}
+        })}
       </div>
+      {visibleCount < filteredCountries.length && (
+        <div className="show-more-container">
+          <button className="show-more-btn" onClick={showMoreCountries}>
+            Show More
+          </button>
+        </div>
+      )}
     </>
   )
 }

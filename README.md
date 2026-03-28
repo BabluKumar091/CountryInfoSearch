@@ -6,7 +6,7 @@ A modern and responsive web application built using **React.js** that allows use
 
 ## 🚀 Live Demo
 
-🔗 [View Live Project](YOUR_LIVE_DEMO_LINK)
+🔗 [View Live Project](https://country-finder12.netlify.app/)
 
 ---
 

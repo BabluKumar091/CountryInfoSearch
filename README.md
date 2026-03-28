@@ -39,6 +39,7 @@ Country Info Search is a user-friendly web app where users can search for any co
 ---
 
 ## 📷 Screenshots
+<img width="1181" height="553" alt="image" src="https://github.com/user-attachments/assets/66935b9f-4950-4bee-8bb1-de7fcd4bd477" />
 
 <!-- Add screenshots here -->
 <!-- Example -->
